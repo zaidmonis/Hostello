@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.yalantis:taurus:1.0.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e16bb3b03742cf05a9a9c6fddc8a5033/transformed/jetified-taurus-1.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e16bb3b03742cf05a9a9c6fddc8a5033/transformed/jetified-taurus-1.0.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e16bb3b03742cf05a9a9c6fddc8a5033/transformed/jetified-taurus-1.0.2/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.yalantis/taurus/1.0.2/5e0e97e4b461022635c5ac66fa0c30fed4f14d16/taurus-1.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.yalantis/taurus/1.0.2/c9ff2e449b96475411de086d4a71bf1ce185aabc/taurus-1.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
