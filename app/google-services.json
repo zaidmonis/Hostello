@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "237842977399",
+    "project_id": "hostello-areeba",
+    "storage_bucket": "hostello-areeba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237842977399:android:41fcb2bac2b0a482f22c72",
+        "android_client_info": {
+          "package_name": "com.srms.areeba.hostello"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237842977399-f7atg2326n2r823frer1nb99i9i4i6bt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.srms.areeba.hostello",
+            "certificate_hash": "9b7e616cd67fc9644a7d203070b2cdfce164859c"
+          }
+        },
+        {
+          "client_id": "237842977399-f0a50i36io8coo51h7ennva6prira2b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEblYiBRTyP5urAChGYUzxRuxcMb6x3zU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237842977399-f0a50i36io8coo51h7ennva6prira2b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

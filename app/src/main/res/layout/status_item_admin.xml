@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:elevation="30dp"
+    android:paddingBottom="10dp">
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="50dp"
+      android:orientation="horizontal"
+      android:id="@+id/status_profile_layout"
+      android:gravity="center_vertical"
+    >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/status_profile_pic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="190dp"
+        android:src="@drawable/image_profile_pic"
+        app:civ_border_color="@color/divider_color"
+        app:civ_border_overlay="true"
+        app:civ_border_width="3dp"
+        />
+    <TextView
+        android:id="@+id/status_complain_name"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:hint="Name"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/light_black"
+        android:textColorHint="@color/light_black"
+        android:textSize="20sp"
+
+        />
+  </LinearLayout>
+
+
+  <TextView
+      android:id="@+id/status_complain_date"
+      android:layout_width="wrap_content"
+      android:layout_height="20dp"
+      android:layout_alignParentEnd="true"
+      android:layout_gravity="end"
+      android:layout_marginEnd="20dp"
+      android:layout_marginTop="10dp"
+      android:gravity="center"
+      android:hint="Date"
+      android:textColor="@color/light_black"
+      android:textColorHint="@color/light_black"
+      android:textSize="15sp"
+      />
+
+  <TextView
+      android:id="@+id/status_complain_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/status_profile_layout"
+      android:layout_gravity="center"
+      android:layout_marginEnd="10dp"
+      android:layout_marginTop="5dp"
+      android:gravity="center"
+      android:hint="Complain Title"
+      android:maxLines="3"
+      android:paddingBottom="10dp"
+      android:paddingEnd="5dp"
+      android:paddingStart="5dp"
+      android:paddingTop="10dp"
+      android:textColor="@color/black"
+      android:textColorHint="@color/light_black"
+      android:textSize="15sp"
+      />
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/status_complain_title"
+      android:layout_marginTop="5dp"
+
+      >
+    <Button
+        android:id="@+id/approve_leave_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="10dp"
+        android:layout_toStartOf="@id/deny_leave_button"
+        android:text="Approve"
+        android:textColor="@color/detail_color"
+        android:textColorHint="@color/detail_color"
+        android:textSize="17sp"
+        />
+    <Button
+        android:id="@+id/deny_leave_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom"
+        android:text="Deny"
+        android:textColor="@color/detail_color"
+        android:textColorHint="@color/detail_color"
+        android:textSize="17sp"
+        />
+
+    <TextView
+        android:id="@+id/status_complain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@color/red"
+        android:gravity="center"
+        android:hint="Status"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:text="Status"
+        android:layout_below="@id/warden_check"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOD approved"
+        android:enabled="false"
+        android:id="@+id/hod_check"
+        android:checked="false"
+      />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hod_check"
+        android:id="@+id/warden_check"
+        android:enabled="false"
+        android:text="Warden approved"
+        />
+
+  </RelativeLayout>
+
+</RelativeLayout>
