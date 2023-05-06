@@ -38,4 +38,3 @@ Commit-Style.md
 *.md
 Instigo apk
 .travis.yml
-/gradle.properties

@@ -1,6 +1,7 @@
 package com.srms.areeba.hostello.Leave;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ import java.util.Locale;
 public class AdminLeavesAdapter extends BaseAdapter {
 
     private Context context;
+    private LinearLayout profileLayout;
     private CheckBox approvedByHODCheckbox, approvedByWardenCheckbox;
     private Button approveLeaveButton, denyLeaveButton;
     private ArrayList<Leave> leaves;
@@ -88,6 +91,7 @@ public class AdminLeavesAdapter extends BaseAdapter {
         TextView complainStatus=view.findViewById(R.id.status_complain);
         ImageView profileImageView = view.findViewById(R.id.status_profile_pic);
         approvedByHODCheckbox = view.findViewById(R.id.hod_check);
+        profileLayout = view.findViewById(R.id.status_profile_layout);
         approvedByWardenCheckbox = view.findViewById(R.id.warden_check);
         approveLeaveButton = view.findViewById(R.id.approve_leave_button);
         denyLeaveButton = view.findViewById(R.id.deny_leave_button);
@@ -174,6 +178,9 @@ public class AdminLeavesAdapter extends BaseAdapter {
                    UserClass user = task.getResult().getValue(UserClass.class);
                    if (user.getUserType().equals(Constants.HOD)) {
                        leave.setApprovedByHOD(true);
+                       if (leave.isApprovedByWarden()) {
+                           leave.setStatus(1);
+                       }
                    }else if (user.getUserType().equals(Constants.WARDEN)) {
                        leave.setApprovedByWarden(true);
                        if (leave.isApprovedByHOD()) {
@@ -218,6 +225,12 @@ public class AdminLeavesAdapter extends BaseAdapter {
             });
             //leaveReference.child(keys.get(i)).child("approvedByHOD").setValue(leave.isApprovedByHOD());
             //leaveReference.child(keys.get(i)).child("approvedByWarden").setValue(leave.isApprovedByWarden());
+        });
+
+        profileLayout.setOnClickListener(view1 -> {
+            Intent profileIntent = new Intent(context.getApplicationContext(), ProfileActivity.class);
+            profileIntent.putExtra("email", leave.getEmail());
+            context.startActivity(profileIntent);
         });
 
         return view;

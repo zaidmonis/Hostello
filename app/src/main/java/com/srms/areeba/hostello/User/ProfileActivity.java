@@ -63,6 +63,8 @@ public class ProfileActivity extends AppCompatActivity
 
     FirebaseStorage storage;
     StorageReference storageReference;
+    FirebaseDatabase profileInstance;
+    DatabaseReference profileRootRef;
     private FirebaseUser profileUser;
     private DatabaseReference profileUserRef;
     private StorageReference ref;
@@ -82,6 +84,7 @@ public class ProfileActivity extends AppCompatActivity
     private ImageView profilePic;
     private ImageView profileCoverPic;
     private DrawerLayout drawerLayout;
+    private String studentEmail;
 
 
 
@@ -90,6 +93,9 @@ public class ProfileActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        studentEmail = getIntent().getStringExtra("email");
+
 
 
         findViewById(R.id.include_profile).setVisibility(View.VISIBLE);
@@ -114,14 +120,19 @@ public class ProfileActivity extends AppCompatActivity
 
         showProgressDialog();
 
-        updateProfile();
+        if (studentEmail == null || profileUser.getEmail().equals(studentEmail)) {
+            updateProfileForCurrentUser();
+        } else {
+            profileEditBtn.setVisibility(View.INVISIBLE);
+            updateProfileForSelectedUser();
+        }
 
         profileEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                showAlertDialogButtonClicked(profileEditBtn);
-
+                if (studentEmail == null || profileUser.getEmail().equals(studentEmail)){
+                    showAlertDialogButtonClicked(profileEditBtn);
+                }
             }
         });
 
@@ -182,8 +193,8 @@ public class ProfileActivity extends AppCompatActivity
 
         FirebaseAuth profileAuth = FirebaseAuth.getInstance();
         profileUser = profileAuth.getCurrentUser();
-        FirebaseDatabase profileInstance = FirebaseDatabase.getInstance();
-        DatabaseReference profileRootRef = profileInstance.getReference().child("Users");
+        profileInstance = FirebaseDatabase.getInstance();
+        profileRootRef = profileInstance.getReference().child("Users");
         assert profileUser != null;
         profileUserRef= profileRootRef.child(encodeUserEmail(Objects.requireNonNull(profileUser.getEmail()))).getRef();
         storage = FirebaseStorage.getInstance();
@@ -197,12 +208,12 @@ public class ProfileActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            NavUtils.navigateUpFromSameTask(this);
-
+            super.onBackPressed();
+            // NavUtils.navigateUpFromSameTask(this);
         }
     }
 
-    private void updateProfile(){
+    private void updateProfileForCurrentUser(){
 
         profileUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -312,6 +323,119 @@ public class ProfileActivity extends AppCompatActivity
         });
 
     }
+
+    private void updateProfileForSelectedUser(){
+        DatabaseReference studentUserRef= profileRootRef.child(encodeUserEmail(Objects.requireNonNull(studentEmail))).getRef();
+        studentUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                UserClass profileUserClass=dataSnapshot.getValue(UserClass.class);
+                if (profileUserClass != null) {
+
+
+                    String Uname=profileUserClass.getName().trim();
+                    String Ubranch=profileUserClass.getBranch().trim();
+                    String Uyear=profileUserClass.getYear().trim();
+                    String Udob=profileUserClass.getDob().trim();
+                    String Uhostel=profileUserClass.getHostel().trim();
+                    String Umob=profileUserClass.getPhone().trim();
+                    String Ugender=profileUserClass.getGender().trim();
+                    String UprofilePic=profileUserClass.getProfilePic().trim();
+                    String UcoverPic=profileUserClass.getCoverPic().trim();
+
+                    if(!Uname.isEmpty())
+                        profileName.setText(Uname);
+
+                    if(!Ubranch.isEmpty())
+                        profileBranch.setText(Ubranch);
+
+                    if(!Uyear.isEmpty())
+                        profileYear.setText(Uyear);
+
+                    if(!Umob.isEmpty())
+                        profileMobile.setText(Umob);
+
+                    if(!Udob.isEmpty())
+                        profileDob.setText(Udob);
+
+                    if(!Ugender.isEmpty())
+                        profileGender.setText(Ugender);
+
+                    if(!Uhostel.isEmpty())
+                        profileHostel.setText(Uhostel);
+
+                    RequestOptions requestOption1 = new RequestOptions()
+                            .placeholder(R.drawable.image_profile_pic)
+                            .error(R.drawable.image_profile_pic)
+                            .fitCenter();
+
+
+                    RequestOptions requestOption2 = new RequestOptions()
+                            .placeholder(R.drawable.image_profile)
+                            .error(R.drawable.image_profile)
+                            .fitCenter();
+
+
+                    if(!UprofilePic.isEmpty()){
+                        Glide.with(ProfileActivity.this)
+                                .load(UprofilePic)
+                                .apply(requestOption1)
+                                .listener(new RequestListener<Drawable>() {
+
+                                    @Override
+                                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                        Toast.makeText(getApplicationContext(),"Failed to load profile pic",Toast.LENGTH_SHORT).show();
+                                        return false;
+                                    }
+
+                                    @Override
+                                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                        return false;
+                                    }
+                                })
+                                .into(profilePic);
+                    }
+
+                    if(!UcoverPic.isEmpty()){
+                        Glide.with(ProfileActivity.this)
+                                .load(UcoverPic)
+                                .apply(requestOption2)
+                                .listener(new RequestListener<Drawable>() {
+
+                                    @Override
+                                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                        Toast.makeText(getApplicationContext(),"Failed to load cover pic",Toast.LENGTH_SHORT).show();
+                                        return false;
+                                    }
+
+                                    @Override
+                                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                        return false;
+                                    }
+                                })
+                                .into(profileCoverPic);
+                    }
+
+
+                }else
+                    Toast.makeText(getApplicationContext(),"User data does not exist",Toast.LENGTH_SHORT).show();
+
+                hideProgressDialog();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText(getApplicationContext(),"Network error",Toast.LENGTH_SHORT).show();
+                hideProgressDialog();
+            }
+        });
+
+    }
+
+
 
     private void chooseImage(int imageReq) {
         Intent intent = new Intent();
