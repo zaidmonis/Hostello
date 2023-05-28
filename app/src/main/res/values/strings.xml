@@ -158,6 +158,13 @@
 
     </string-array>
 
+    <string-array name="leaveTypes">
+        <item>Short Leave</item>
+        <item>Long Leave</item>
+        <item>Medical Leave</item>
+        <item>Emergency Leave</item>
+    </string-array>
+
     <string-array name="doc_type">
         <item>Pdf</item>
         <item>Image</item>

@@ -40,9 +40,7 @@
         android:layout_gravity="center_vertical|start"
         android:layout_margin="10dp"
         android:fadingEdge="horizontal"
-        android:requiresFadingEdge="horizontal"
-        android:src="@drawable/icon_cs"
-        />
+        android:requiresFadingEdge="horizontal"/>
     <TextView
         android:id="@+id/branch_cse"
         android:layout_width="180dp"
@@ -106,9 +104,9 @@
         android:layout_gravity="center_vertical|start"
         android:layout_margin="10dp"
         android:fadingEdge="horizontal"
-        android:requiresFadingEdge="horizontal"
-        android:src="@drawable/icon_ee"
-        />
+        android:requiresFadingEdge="horizontal"/>
+        <!--android:src="@drawable/icon_ee"-->
+
     <TextView
         android:id="@+id/branch_ee"
         android:layout_width="180dp"

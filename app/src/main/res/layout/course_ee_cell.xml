@@ -30,9 +30,9 @@
           android:layout_gravity="center_vertical|start"
           android:layout_margin="10dp"
           android:fadingEdge="horizontal"
-          android:requiresFadingEdge="horizontal"
-          android:src="@drawable/icon_ee"
-          />
+          android:requiresFadingEdge="horizontal"/>
+          <!--android:src="@drawable/icon_ee"-->
+
       <TextView
           android:id="@+id/course_ee_no"
           android:layout_width="200dp"

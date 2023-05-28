@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ import java.util.Locale;
 public class ShortLeaveActivity extends AppCompatActivity {
 
     EditText editShortName, editShortReason, editStartDate, editEndDate;
+    Spinner leaveTypeSpinner;
     Button submitButton;
     private Calendar myCalendar;
     private DatabaseReference leaveReference, leaveRootReference;
@@ -53,6 +55,7 @@ public class ShortLeaveActivity extends AppCompatActivity {
         editStartDate = findViewById(R.id.edit_start_date);
         editEndDate = findViewById(R.id.edit_end_date);
         submitButton = findViewById(R.id.leave_submit_button);
+        leaveTypeSpinner = findViewById(R.id.pro_edit_leave_type);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -77,6 +80,7 @@ public class ShortLeaveActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Leave shortLeave = new Leave(editShortName.getText().toString(),
                         editShortReason.getText().toString(),
+                        leaveTypeSpinner.getSelectedItem().toString(),
                         editStartDate.getText().toString(),
                         editEndDate.getText().toString());
 

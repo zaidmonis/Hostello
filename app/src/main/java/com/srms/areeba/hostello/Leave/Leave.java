@@ -13,6 +13,7 @@ public class Leave implements Parcelable {
     private String endDate;
     private int status;
     private long leaveTime;
+    private String leaveType = "Short Leave";
     private boolean approvedByHOD;
     private boolean approvedByWarden;
 
@@ -27,6 +28,7 @@ public class Leave implements Parcelable {
         startDate = in.readString();
         endDate = in.readString();
         status = in.readInt();
+        leaveType = in.readString();
         leaveTime = in.readLong();
         approvedByHOD = in.readBoolean();
         approvedByWarden = in.readBoolean();
@@ -109,24 +111,26 @@ public class Leave implements Parcelable {
         this.approvedByWarden = approvedByWarden;
     }
 
-    public Leave(String email, String reason, String startDate, String endDate, int status, long leaveTime, boolean approvedByHOD, boolean approvedByWarden) {
+    public Leave(String email, String reason, String startDate, String endDate, int status, long leaveTime, String leaveType, boolean approvedByHOD, boolean approvedByWarden) {
         this.email = email;
         this.reason = reason;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
         this.leaveTime = leaveTime;
+        this.leaveType = leaveType;
         this.approvedByWarden = approvedByWarden;
         this.approvedByHOD = approvedByHOD;
     }
 
-    public Leave(String email, String reason, String startDate, String endDate) {
+    public Leave(String email, String reason, String LeaveType, String startDate, String endDate) {
         this.email = email;
         this.reason = reason;
         this.startDate = startDate;
         this.endDate = endDate;
         this.approvedByHOD = false;
         this.approvedByWarden = false;
+        this.leaveType = leaveType;
     }
 
     @Override
@@ -143,6 +147,7 @@ public class Leave implements Parcelable {
         parcel.writeString(endDate);
         parcel.writeInt(status);
         parcel.writeLong(leaveTime);
+        parcel.writeString(leaveType);
         parcel.writeBoolean(approvedByHOD);
         parcel.writeBoolean(approvedByWarden);
     }

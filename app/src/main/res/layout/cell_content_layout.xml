@@ -63,6 +63,7 @@
       android:id="@+id/cell_content_layout3"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_above="@id/cell_content_layout4"
       android:background="@color/white"
       android:minHeight="160dp"
       android:paddingBottom="10dp"
@@ -97,7 +98,6 @@
         android:id="@+id/content_items_names"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/cell_layout3"
         android:layout_below="@id/cell_divider"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
@@ -129,6 +129,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="@color/white"
+      android:id="@+id/cell_content_layout4"
       android:orientation="vertical"
       >
 
