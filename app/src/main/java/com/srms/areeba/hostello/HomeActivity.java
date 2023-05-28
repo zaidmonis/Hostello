@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.srms.areeba.hostello.Complaints.ComplainStatus;
 import com.srms.areeba.hostello.Complaints.ComplaintsActivity;
 import com.srms.areeba.hostello.Council.CouncilActivity;
 import com.srms.areeba.hostello.Leave.AdminLeaveActivity;
@@ -43,6 +46,8 @@ public class HomeActivity extends AppCompatActivity
     private ImageButton bloodPressureImageBt;
     private ImageButton leaveButton;
     private ImageButton emergencyConImageBt;
+    LinearLayout viewMess, viewComplaints, viewLeave, viewContact;
+    ProgressBar progressMain;
 
     FirebaseAuth firebaseAuth;
     FirebaseDatabase db;
@@ -112,6 +117,33 @@ public class HomeActivity extends AppCompatActivity
         bloodPressureImageBt = findViewById(R.id.imagebt_bp);
         leaveButton = findViewById(R.id.leave_button);
         emergencyConImageBt = findViewById(R.id.image_ec);
+
+        viewComplaints = findViewById(R.id.view_complaint);
+        viewLeave = findViewById(R.id.view_leave);
+        viewMess = findViewById(R.id.view_mess);
+        viewContact = findViewById(R.id.view_contact);
+        progressMain = findViewById(R.id.progress_main);
+
+
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        DatabaseReference reference = db.getReference().child("Users");
+
+        String email = currentUser.getEmail().replaceAll("[.]", ",");
+        reference.child(email).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                progressMain.setVisibility(View.GONE);
+                UserClass user = task.getResult().getValue(UserClass.class);
+                if (user.getUserType().equals(Constants.HOD) || user.getUserType().equals(Constants.WARDEN) || user.getUserType().equals(Constants.STAFF)) {
+                    viewContact.setVisibility(View.INVISIBLE);
+                }
+                if (user.getUserType().equals(Constants.HOD)) {
+                    viewMess.setVisibility(View.INVISIBLE);
+                }
+            } else {
+                Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -123,7 +155,7 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(new Intent(HomeActivity.this,MessActivity.class));
                 break;
             case R.id.imagebt_bp:
-                startActivity(new Intent(HomeActivity.this,ComplaintsActivity.class));
+                openComplaintActivity();
                 break;
 
             case R.id.leave_button: {
@@ -154,6 +186,28 @@ public class HomeActivity extends AppCompatActivity
                     startActivity(new Intent(HomeActivity.this, AdminLeaveActivity.class));
                 } else if (user.getUserType().equals(Constants.STUDENT)) {
                     startActivity(new Intent(HomeActivity.this, LeaveActivity.class));
+                } else {
+                    Toast.makeText(this, "Invalid User Type. Please contact administrator", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void openComplaintActivity() {
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        DatabaseReference reference = db.getReference().child("Users");
+
+        String email = currentUser.getEmail().replaceAll("[.]", ",");
+        reference.child(email).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                UserClass user = task.getResult().getValue(UserClass.class);
+                if (user.getUserType().equals(Constants.HOD) || user.getUserType().equals(Constants.WARDEN) || user.getUserType().equals(Constants.STAFF)) {
+                    startActivity(new Intent(HomeActivity.this, ComplainStatus.class));
+                } else if (user.getUserType().equals(Constants.STUDENT)) {
+                    startActivity(new Intent(HomeActivity.this, ComplaintsActivity.class));
                 } else {
                     Toast.makeText(this, "Invalid User Type. Please contact administrator", Toast.LENGTH_SHORT).show();
                 }

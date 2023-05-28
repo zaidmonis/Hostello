@@ -131,7 +131,7 @@ public class Leave implements Parcelable {
         this.approvedByHOD = approvedByHOD;
     }
 
-    public Leave(String email, String reason, String LeaveType, String startDate, String endDate) {
+    public Leave(String email, String reason, String leaveType, String startDate, String endDate) {
         this.email = email;
         this.reason = reason;
         this.startDate = startDate;

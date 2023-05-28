@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +31,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.srms.areeba.hostello.Account.LoginActivity;
 import com.srms.areeba.hostello.Complaints.ComplaintsActivity;
 import com.srms.areeba.hostello.Council.CouncilActivity;
@@ -40,6 +43,7 @@ import com.srms.areeba.hostello.Resources.ResourceActivity;
 import com.srms.areeba.hostello.Settings.SettingsActivity;
 import com.srms.areeba.hostello.User.ProfileActivity;
 import com.srms.areeba.hostello.User.UpdatePassword;
+import com.srms.areeba.hostello.User.UserClass;
 
 
 public class CommonFunctions {
@@ -155,10 +159,12 @@ public class CommonFunctions {
 
             TextView emailTextView = drawerHeader.findViewById(R.id.nav_header_email);
             TextView usernameTextView = drawerHeader.findViewById(R.id.nav_header_username);
+            TextView userDesignation = drawerHeader.findViewById(R.id.nav_header_designation);
             ImageView userImage=drawerHeader.findViewById(R.id.nav_header_imageView);
 
             emailTextView.setText(firebaseUser.getEmail());
             usernameTextView.setText(firebaseUser.getDisplayName());
+            setUserDesignation(userDesignation, firebaseUser);
 
             Uri photoUri = firebaseUser.getPhotoUrl();
             if(photoUri == null){
@@ -180,6 +186,20 @@ public class CommonFunctions {
                         .into(userImage);
             }
         }
+    }
+
+    private static void setUserDesignation(TextView userDesignation, FirebaseUser currentUser) {
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference reference = db.getReference().child("Users");
+
+        String email = currentUser.getEmail().replaceAll("[.]", ",");
+        reference.child(email).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                UserClass user = task.getResult().getValue(UserClass.class);
+                userDesignation.setText(user.getUserType().toString());
+            } else {
+            }
+        });
     }
 
     public static Bitmap drawableToBitmap (Drawable drawable) {

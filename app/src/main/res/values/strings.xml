@@ -187,6 +187,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="leave_type">Leave Type</string>
-    <string name="leave_reason">Leave reason</string>
+    <string name="type">Type</string>
+    <string name="reason">Reason</string>
+    <string name="designation">Designation</string>
 </resources>

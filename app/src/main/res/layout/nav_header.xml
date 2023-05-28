@@ -31,7 +31,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginStart="5dp"
-      android:layout_marginTop="20dp"
+      android:layout_marginTop="10dp"
       android:gravity="center_vertical"
       android:text="@string/username"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -52,6 +52,22 @@
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       android:textColor="@color/white"
       android:textSize="15sp"
+      android:textStyle="normal"
+      android:typeface="normal"
+
+      />
+
+  <TextView
+      android:id="@+id/nav_header_designation"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:layout_marginStart="5dp"
+      android:gravity="center_vertical"
+      android:text="@string/designation"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      android:textColor="@color/white"
+      android:textSize="17sp"
       android:textStyle="normal"
       android:typeface="normal"
 

@@ -9,6 +9,12 @@
     android:weightSum="20"
     >
 
+  <ProgressBar
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/progress_main"
+    ></ProgressBar>
+
 
   <LinearLayout
       android:id="@+id/fl_2"
@@ -51,8 +57,103 @@
       android:weightSum="10"
       >
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view_complaint"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="2dp"
+        android:layout_weight="5"
+        >
+
+      <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          >
+        <ImageButton
+            android:id="@+id/imagebt_bp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
+            android:paddingBottom="25dp"
+            android:paddingEnd="30dp"
+            android:paddingStart="30dp"
+            android:paddingTop="35dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_complaints_color"
+            android:text="Complaints"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Complaints"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+      </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="2dp"
+        android:id="@+id/view_leave"
+        android:layout_marginStart="5dp"
+        android:layout_weight="5"
+        >
+
+      <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          >
+
+        <ImageButton
+            android:id="@+id/leave_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
+            android:paddingBottom="25dp"
+            android:paddingEnd="30dp"
+            android:paddingStart="30dp"
+            android:paddingTop="35dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_resource_color"
+            android:text="Resources"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Leave Requests"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+      </FrameLayout>
+    </LinearLayout>
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="5.5"
+      android:background="@color/home_back"
+      android:orientation="horizontal"
+      android:weightSum="10"
+      >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/view_mess"
         android:layout_height="match_parent"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="5dp"
@@ -94,102 +195,14 @@
       </FrameLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="2dp"
-        android:layout_weight="5"
-        >
 
-      <FrameLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          >
-        <ImageButton
-            android:id="@+id/imagebt_bp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/white"
-            android:paddingBottom="25dp"
-            android:paddingEnd="30dp"
-            android:paddingStart="30dp"
-            android:paddingTop="35dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_complaints_color"
-            android:text="Complaints"
-            android:textColor="@color/black"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:clickable="false"
-            android:gravity="center"
-            android:text="Complaints"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            />
-      </FrameLayout>
-    </LinearLayout>
-  </LinearLayout>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="5.5"
-      android:background="@color/home_back"
-      android:orientation="horizontal"
-      android:weightSum="10"
-      >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="2dp"
-        android:layout_marginStart="5dp"
-        android:layout_weight="5"
-        >
-
-      <FrameLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          >
-
-        <ImageButton
-            android:id="@+id/leave_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/white"
-            android:paddingBottom="25dp"
-            android:paddingEnd="30dp"
-            android:paddingStart="30dp"
-            android:paddingTop="35dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_resource_color"
-            android:text="Resources"
-            android:textColor="@color/black"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:clickable="false"
-            android:gravity="center"
-            android:text="Leave Requests"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            />
-      </FrameLayout>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="2dp"
+        android:id="@+id/view_contact"
         android:layout_weight="5"
         >
 
