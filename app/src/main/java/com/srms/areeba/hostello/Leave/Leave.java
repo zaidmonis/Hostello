@@ -21,6 +21,14 @@ public class Leave implements Parcelable {
 
     }
 
+    public String getLeaveType() {
+        return leaveType;
+    }
+
+    public void setLeaveType(String leaveType) {
+        this.leaveType = leaveType;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.Q)
     protected Leave(Parcel in) {
         email = in.readString();

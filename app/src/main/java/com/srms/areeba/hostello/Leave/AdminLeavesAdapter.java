@@ -89,6 +89,7 @@ public class AdminLeavesAdapter extends BaseAdapter {
         TextView complainDate=view.findViewById(R.id.status_complain_date);
         TextView complainTitle=view.findViewById(R.id.status_complain_title);
         TextView complainStatus=view.findViewById(R.id.status_complain);
+        TextView leaveType = view.findViewById(R.id.view_leave_type);
         ImageView profileImageView = view.findViewById(R.id.status_profile_pic);
         approvedByHODCheckbox = view.findViewById(R.id.hod_check);
         profileLayout = view.findViewById(R.id.status_profile_layout);
@@ -143,6 +144,7 @@ public class AdminLeavesAdapter extends BaseAdapter {
         complainDate.setText(date);
         // complainType.setText(leaves.getComplainType());
         complainTitle.setText(leave.getReason());
+        leaveType.setText(leave.getLeaveType());
 
 
         if(leave.getStatus()==1){

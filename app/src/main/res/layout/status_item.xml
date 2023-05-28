@@ -40,7 +40,7 @@
       />
 
   <TextView
-      android:id="@+id/status_complain_title"
+      android:id="@+id/view_leave_type_student"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@id/status_complain_name"
@@ -48,7 +48,27 @@
       android:layout_marginEnd="10dp"
       android:layout_marginTop="5dp"
       android:gravity="center"
-      android:hint="Complain Title"
+      android:text="@string/leave_type"
+      android:maxLines="3"
+      android:paddingBottom="10dp"
+      android:paddingEnd="5dp"
+      android:paddingStart="5dp"
+      android:paddingTop="10dp"
+      android:textColor="@color/black"
+      android:textColorHint="@color/light_black"
+      android:textSize="17sp"
+      />
+
+  <TextView
+      android:id="@+id/status_complain_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/view_leave_type_student"
+      android:layout_gravity="center"
+      android:layout_marginEnd="10dp"
+      android:layout_marginTop="5dp"
+      android:gravity="center"
+      android:text="@string/leave_reason"
       android:maxLines="3"
       android:paddingBottom="10dp"
       android:paddingEnd="5dp"

@@ -59,6 +59,7 @@ public class LeavesAdapter extends BaseAdapter {
         TextView complainTitle=view.findViewById(R.id.status_complain_title);
         TextView complainStatus=view.findViewById(R.id.status_complain);
         TextView complainDetails=view.findViewById(R.id.status_complain_details);
+        TextView leaveType = view.findViewById(R.id.view_leave_type_student);
 
 
 
@@ -69,6 +70,7 @@ public class LeavesAdapter extends BaseAdapter {
         complainDate.setText(date);
         // complainType.setText(leaves.getComplainType());
         complainTitle.setText(leave.getReason());
+        leaveType.setText(leave.getLeaveType());
 
         if(leave.getStatus()==1){
             complainStatus.setText("Approved");

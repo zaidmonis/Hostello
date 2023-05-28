@@ -37,6 +37,7 @@
         </activity>
         <activity
             android:name=".Leave.LeaveStatusActivity"
+            android:parentActivityName=".Leave.LeaveActivity"
             android:exported="false" />
         <activity
             android:name=".Leave.ShortLeaveActivity"
